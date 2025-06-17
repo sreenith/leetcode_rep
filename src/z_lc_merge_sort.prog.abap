@@ -48,7 +48,6 @@ FORM mergesort  TABLES  lt_array TYPE STANDARD TABLE .
   CHECK len_array > 1.
 
   DATA(mid_array) = len_array DIV 2.
-*  mid_array = mid_array + 1.
 
   IF lt_array[] IS NOT INITIAL.
 
