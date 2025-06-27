@@ -17,7 +17,8 @@ ENDCLASS.
 
 START-OF-SELECTION.
   DATA(lv_ref) = NEW lcl_two_sum( ).
-  DATA(a) = VALUE ty_array( ( 2 ) ( 7 ) ( 11 ) ( 15 ) ).
+*  DATA(a) = VALUE ty_array( ( 2 ) ( 7 ) ( 11 ) ( 15 ) ).
+  DATA(a) = VALUE ty_array( ( 15 ) ( 7 ) ( 11 ) ( 2 ) ).
   IF lv_ref IS NOT INITIAL.
 *    DATA(indexs) = lv_ref->m_brute_force( EXPORTING array = a target = 9 ).
     DATA(indexs) = lv_ref->m_two_pointer(

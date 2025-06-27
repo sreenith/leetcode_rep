@@ -40,12 +40,12 @@ REPORT z_lc_subquery.
 *REPORT demo_select_subquery_1.
 
 DATA: name_tab TYPE TABLE OF scarr-carrname,
-      name  LIKE LINE OF name_tab.
+      name     LIKE LINE OF name_tab.
 
 SELECT  carrname
   INTO  TABLE name_tab
   FROM  scarr
-  WHERE EXISTS ( select  *
+  WHERE EXISTS ( SELECT  *
                    FROM  spfli
                    WHERE carrid   =  scarr~carrid AND
                          cityfrom = 'NEW YORK'        ).
@@ -72,7 +72,7 @@ DATA: city  TYPE sgeocity-city,
 SELECT  SINGLE city latitude longitude
   INTO  (city, lati, longi)
   FROM  sgeocity
-  WHERE city IN ( select  cityfrom
+  WHERE city IN ( SELECT  cityfrom
                     FROM  spfli
                     WHERE carrid = carr_id AND
                           connid = conn_id      ).
@@ -87,7 +87,7 @@ WRITE: city, lati, longi.
 
 *REPORT demo_select_subquery_3.
 
-DATA: wa TYPE sflight,
+DATA: wa    TYPE sflight,
       plane LIKE wa-planetype,
       seats LIKE wa-seatsmax.
 
@@ -121,7 +121,7 @@ AT LINE-SELECTION.
     INTO  (plane, seats)
     FROM  saplane AS plane
     WHERE seatsmax < wa-seatsmax AND
-          seatsmax >= ALL ( select  seatsocc
+          seatsmax >= ALL ( SELECT  seatsocc
                               FROM  sflight
                               WHERE carrid = wa-carrid AND
                                     connid = wa-connid     )

@@ -4,11 +4,10 @@
 *&
 *&---------------------------------------------------------------------*
 REPORT z_lc_two_sum.
-
+*Two sum works for Unsorted and Sorted arrays without any explicit sort
 
 TYPES: BEGIN OF ty_hash,
          key TYPE i,
-*         val TYPE i,
        END OF ty_hash.
 
 
@@ -20,7 +19,8 @@ DATA: gt_values TYPE STANDARD TABLE OF i,
 
 DATA(target) = 9.
 
-gt_values = VALUE #( ( 1 ) ( 2 ) ( 3 ) ( 4 ) ( 5 ) ).
+*gt_values = VALUE #( ( 1 ) ( 2 ) ( 3 ) ( 4 ) ( 5 ) ( 6 ) ).
+gt_values = VALUE #( ( 3 ) ( 6 ) ( 1 ) ( 4 ) ( 5 ) ( 2 ) ).
 
 LOOP AT gt_values INTO gs_values.
 
@@ -31,13 +31,11 @@ LOOP AT gt_values INTO gs_values.
   IF sy-subrc NE 0.
 
     gs_hash-key = gs_values.
-*    gs_hash-val =  sy-tabix.
 
     INSERT gs_hash INTO TABLE gt_hash.
   ELSE.
 
     WRITE:/ gs_values , gs_hash-key.
-    EXIT.
 
   ENDIF.
 
