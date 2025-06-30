@@ -17,8 +17,9 @@ ENDCLASS.
 
 START-OF-SELECTION.
   DATA(lv_ref) = NEW lcl_two_sum( ).
-*  DATA(a) = VALUE ty_array( ( 2 ) ( 7 ) ( 11 ) ( 15 ) ).
-  DATA(a) = VALUE ty_array( ( 15 ) ( 7 ) ( 11 ) ( 2 ) ).
+  DATA(a) = VALUE ty_array( ( 2 ) ( 7 ) ( 11 ) ( 15 ) ).
+*  DATA(a) = VALUE ty_array( ( 15 ) ( 7 ) ( 11 ) ( 2 ) ).
+
   IF lv_ref IS NOT INITIAL.
 *    DATA(indexs) = lv_ref->m_brute_force( EXPORTING array = a target = 9 ).
     DATA(indexs) = lv_ref->m_two_pointer(
@@ -34,7 +35,7 @@ START-OF-SELECTION.
 
 CLASS lcl_two_sum IMPLEMENTATION.
   METHOD m_two_pointer.
-    SORT array BY table_line.
+    SORT array BY table_line. "sorts data
     DATA(low) = 1.
     DATA(high) = lines( array ).
     WHILE low LT high.
@@ -43,8 +44,10 @@ CLASS lcl_two_sum IMPLEMENTATION.
       ELSEIF array[ low ] + array[ high ] LT target.
         low = low + 1.
       ELSE.
-        APPEND low TO x.
-        APPEND high TO x.
+*        APPEND low TO x.
+*        APPEND high TO x.
+        APPEND array[ low ] TO x.
+        APPEND array[ high ] TO x.
         RETURN.
       ENDIF.
     ENDWHILE.

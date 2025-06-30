@@ -5,6 +5,8 @@
 *&---------------------------------------------------------------------*
 REPORT z_lc_two_sum.
 *Two sum works for Unsorted and Sorted arrays without any explicit sort
+*Time complexity O(n)
+*Space omplexity O(n)
 
 TYPES: BEGIN OF ty_hash,
          key TYPE i,
