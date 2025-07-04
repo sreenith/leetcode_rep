@@ -4,6 +4,16 @@
 *&
 *&---------------------------------------------------------*
 REPORT z_lc_compress_string.
+*⏱ Time Complexity: O(n)
+*- The loop runs once for each character of the input string → DO strlen( p_string ) TIMES → O(n)
+*- Each iteration performs only constant-time operations: character access, comparison, and string appending
+*- Appending to lv_cstr is handled by ABAP’s string concatenation, which has amortized linear performance, but since we only perform at most n such appends, the overall work remains linear
+*✅ Final time complexity: O(n), where n is the length of the input string
+*
+*🧠 Space Complexity: O(n)
+*- lv_cstr stores the compressed result. In the worst case (no repeated characters, like abcdef), the compressed string grows nearly double: 2n
+*- Apart from a few scalar variables (lv_curr, lv_next, etc.), there’s no additional memory overhead
+*✅ Final space complexity: O(n)
 
 *aaaabbbcccccdee
 DATA:lv_cstr  TYPE string,

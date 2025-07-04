@@ -4,6 +4,24 @@
 *&
 *&---------------------------------------------------------------------*
 REPORT z_lc_anagram.
+*⏱ Time Complexity:
+*Let n be the length of the input strings (since both are equal if they proceed past the length check).
+*- Main DO loop:
+*- Runs n times
+*- Each loop:
+*- Two READ TABLE operations into a HASHED TABLE → average O(1) each
+*- At most one INSERT per character if not already present → also O(1)
+*- So, per iteration = constant work → O(1)
+*✅ Total for loop: O(n)
+*- Final DELETE and IS INITIAL check:
+*- DELETE lt_dict WHERE val = 0 traverses the hash table → at most O(k)
+*- k = number of unique characters, and since we're working with single characters, k ≤ 128 (ASCII) → treated as O(1)
+*✅ Total Time Complexity: O(n)
+*🧠 Space Complexity:
+*- lt_dict holds up to k entries for each unique character across both strings
+*→ Maximum k = 128 (if extended ASCII, 256; Unicode could be higher, but normally bounded)
+*- Regardless of input size, this stays constant for small alphabet sizes
+*✅ Total Space Complexity: O(k) → effectively O(1) for ASCI
 
 TYPES : BEGIN OF ty_dict,
           let TYPE c,

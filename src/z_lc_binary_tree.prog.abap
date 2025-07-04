@@ -4,6 +4,18 @@
 *&
 *&---------------------------------------------------------------------*
 REPORT z_lc_binary_tree.
+*⏱️ Time Complexity
+*Insertion (add_value):
+*- In a perfectly balanced BST, each insertion takes O(log n).
+*- But in the worst case—if input is sorted or skewed—it can degrade to a linked list, resulting in O(n) per insertion.
+*- With n insertions from the loop, total complexity becomes:
+*- Best/Average case: O(n log n)
+*- Worst case: O(n²)
+*Traversal (print_value):
+*- This performs an in-order traversal, visiting each node once → O(n)
+*✅ Overall Time Complexity:
+*- Best/Average case: O(n log n)
+*- Worst case (unbalanced tree): O(n²)
 
 
 TYPES: BEGIN OF ty_binarybtree,
@@ -51,7 +63,7 @@ FORM add_value  USING   btree TYPE ty_binarybtree
                          val TYPE i.
 
   FIELD-SYMBOLS: <lbtree> TYPE ty_binarybtree.
-  DATA: work TYPE ty_binarybtree.
+*  DATA: work TYPE ty_binarybtree.
 
   IF btree IS INITIAL.
 
